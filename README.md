@@ -27,7 +27,7 @@
 | category_id        | integer    | null: false                    |
 | status_id          | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
-| prefectures_id     | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | shipping_date_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
@@ -35,7 +35,6 @@
 ### Association
 
 - belongs_to :user
-- has_one :buyer
 - has_one :order
 
 ## orders テーブル
@@ -56,7 +55,7 @@
 | Column         | Type    | Options                        |
 | -------------- | ------- | ------------------------------ |
 | post_code      | string  | null: false                    |
-| prefectures_id | integer | null: false                    |
+| prefecture_id  | integer | null: false                    |
 | municipalities | string  | null: false                    |
 | address        | string  | null: false                    |
 | building_name  | string  |                                |

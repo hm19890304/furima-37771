@@ -3,8 +3,10 @@ function calc (){
   const tax = document.getElementById("add-tax-price")
   const profit = document.getElementById("profit")
   price.addEventListener("keyup", () => {
-    tax.innerHTML = `${price.value * 0.1}`;
-    profit.innerHTML = `${price.value * 0.9}`;
+    const floor_tax = Math.floor(price.value * 0.1);
+    const floor_profit = Math.floor(price.value * 0.9);
+    tax.innerHTML = floor_tax;
+    profit.innerHTML = floor_profit;
   });
 };
 

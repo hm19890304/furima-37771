@@ -29,8 +29,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it 'category_idが1では登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
       it 'status_idが空では登録できない' do
         @item.status_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be blank")
+      end
+      it 'status_idが1では登録できない' do
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
@@ -39,12 +49,27 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
+      it 'delivery_charge_idが1では登録できない' do
+        @item.delivery_charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
+      end
       it 'prefecture_idが空では登録できない' do
         @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it 'prefecture_idが空では登録できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it 'shipping_date_idが空では登録できない' do
+        @item.shipping_date_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping date can't be blank")
+      end
+      it 'shipping_date_idが1では登録できない' do
         @item.shipping_date_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date can't be blank")
@@ -63,6 +88,11 @@ RSpec.describe Item, type: :model do
         @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+      end
+      it 'priceに小数を含むと登録できない' do
+        @item.price = '500.5'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
       it 'priceに数字以外を含むと登録できない' do
         @item.price = '500yen'

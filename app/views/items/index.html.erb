@@ -134,12 +134,10 @@
             <%= link_to item_path(item) do %>
               <div class='item-img-content'>
                 <%= image_tag item.image, class: "item-img" if item.image.attached? %>
-                <% @order.each do |order| %>
-                  <% if order.item_id == item.id %>
-                    <div class='sold-out'>
-                      <span>Sold Out!!</span>
-                    </div>
-                  <% end %>
+                <% if Order.find_by(item_id: item.id) != nil %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!!</span>
+                  </div>
                 <% end %>
               </div>
               <div class='item-info'>

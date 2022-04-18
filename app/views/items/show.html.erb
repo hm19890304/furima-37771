@@ -8,12 +8,10 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <% @order.each do |order| %>
-        <% if order.item_id == @item.id %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-        <% end %>
+      <% if Order.find_by(item_id: @item.id) != nil %>
+        <div class='sold-out'>
+          <span>Sold Out!!</span>
+        </div>
       <% end %>
     </div>
     <div class="item-price-box">
@@ -30,13 +28,10 @@
       <p class="or-text">or</p>
       <%= link_to "削除", item_path(@item), method: :delete, class:"item-destroy" %>
 
-      <% elsif user_signed_in? %>
-        <% @order.each do |order| %>
-          <% if order.item_id == @item.id %>
-            <% break %>
-          <% end %>
-          <%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn"%>
-        <% end %>
+    <% elsif user_signed_in? %>
+      <% if Order.find_by(item_id: @item.id) == nil %>
+      <%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn"%>
+      <% end %>
     <% end %>
 
     <div class="item-explain-box">

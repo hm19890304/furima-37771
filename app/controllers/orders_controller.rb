@@ -1,10 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @order = Order.new(order_params)
-    @order_buyer = OrderBuyer.new
-  end
-
-  def new
+    @item = Item.find(params[:item_id])
     @order_buyer = OrderBuyer.new
   end
 
@@ -14,17 +10,14 @@ class OrdersController < ApplicationController
       @order_buyer.save
       redirect_to root_path
     else
+      @item = Item.find(params[:item_id])
       render :index
     end
   end
 
   private
 
-  def order_params
-    params.permit(:user_id, :item_id)
-  end
-
   def order_buyer_params
-    params.require(:order_buyer).permit(:post_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: item.id)
+    params.require(:order_buyer).permit(:post_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end

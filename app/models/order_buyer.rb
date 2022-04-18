@@ -1,7 +1,7 @@
 class OrderBuyer
   include ActiveModel::Model
 
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipalities, :address, :phone_number, :order_id
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number, :order_id
   with_options presence: true do
     validates :user_id
     validates :item_id

@@ -2,6 +2,7 @@ class OrderBuyer
   include ActiveModel::Model
 
   attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :municipalities, :address, :building_name, :phone_number, :order_id
+
   with_options presence: true do
     validates :user_id
     validates :item_id
@@ -10,7 +11,6 @@ class OrderBuyer
     validates :municipalities
     validates :address
     validates :phone_number
-    validates :order_id
   end
 
   def save

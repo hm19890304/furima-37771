@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_date
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id

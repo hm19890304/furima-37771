@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :order
 
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
+  with_options numericality: { other_than: 1, message: "を入力してください" } do
     validates :category_id
     validates :status_id
     validates :delivery_charge_id

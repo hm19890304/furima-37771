@@ -18,6 +18,7 @@ ja:
         shipping_date_id: 発送までの日数
         price: 価格
         image: 画像
+        user: 出品者
   activemodel:
     attributes:
       order_buyer:
@@ -27,3 +28,5 @@ ja:
         address: 番地
         phone_number: 電話番号 
         token: クレジットカード情報
+        user_id: 購入者
+        item_id: 商品

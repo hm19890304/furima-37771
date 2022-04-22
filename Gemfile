@@ -66,3 +66,4 @@ gem 'active_storage_validations'
 gem 'pry-rails'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
+gem 'rails-i18n'
